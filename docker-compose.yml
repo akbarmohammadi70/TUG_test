@@ -1,0 +1,48 @@
+version: '3.8'
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: intrack_redis
+    ports:
+    - "6379:6379"
+    volumes:
+    - redis_data:/data
+
+backend:
+  build: ./backend
+  environment:
+  - REDIS_HOST=redis
+  - REDIS_PORT=6379
+  - NODE_ENV=development
+  depends_on:
+  - redis
+  networks:
+  - intrack_net
+
+frontend:
+  build: ./frontend
+  environment:
+  - NODE_ENV=development
+  depends_on:
+  - backend
+  networks:
+  - intrack_net
+
+nginx:
+  image: nginx:stable-alpine
+  ports:
+  - "80:80"
+  volumes:
+  - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+  depends_on:
+  - frontend
+  - backend
+  networks:
+  - intrack_net
+
+volumes:
+redis_data:
+
+networks:
+intrack_net:
+driver: bridge
