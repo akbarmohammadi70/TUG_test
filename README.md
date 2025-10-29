@@ -3,7 +3,6 @@
 A local development environment with Frontend (Next.js) and Backend (NestJS) applications communicating via REST API. This project also includes Redis for caching and Nginx as a reverse proxy with gzip and caching capabilities.
 
 ## Project Structure
-
 project-root/
 ├─ backend/
 │ ├─ src/
@@ -18,10 +17,9 @@ project-root/
 ├─ nginx/
 │ └─ nginx.conf
 ├─ docker-compose.yml
-└─ .env
-└─ .gitlab-ci.yml
+├─ .env
+├─ .gitlab-ci.yml
 └─ README.md
-
 
 ## Environment Variables
 
