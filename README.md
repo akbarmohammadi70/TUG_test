@@ -254,7 +254,6 @@ To enhance security and control access to the application, several Cloudflare fi
 
 - **File Extension Blocking**: Block requests for sensitive files using `(http.request.uri.path contains ".env" or http.request.uri.path contains ".git")` with **Block** action
 
-These rules collectively strengthen your application's perimeter defense by filtering unwanted or malicious requests before they reach your servers, providing multiple layers of security protection.
 
 #### License
 
