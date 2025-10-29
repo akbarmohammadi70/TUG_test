@@ -240,7 +240,21 @@ Response → 429 Too Many Requests
 ```
 ##### 4- Firewall Rules (Example)
 
-To enhance security and control access to the application, several Cloudflare firewall rules can be configured. For example, you can block known bots using the expression (cf.client_bot) with the Block action to prevent automated scraping. To protect sensitive areas, such as administrative routes, use (http.request.uri.path contains "/admin") and set the action to Challenge, ensuring only authorized users can access them. You can also restrict traffic to a specific country — for instance, blocking all requests where (ip.geoip.country ne "US"). Additionally, to prevent SQL injection attacks, use a rule such as (http.request.uri.query matches "(?i)(union|select)") and set it to Block. These rules collectively strengthen your application’s perimeter defense by filtering unwanted or malicious requests before they reach your servers.
+To enhance security and control access to the application, several Cloudflare firewall rules can be configured:
+
+- **Block Known Bots**: Use the expression `(cf.client_bot)` with the **Block** action to prevent automated scraping and bot traffic
+
+- **Protect Admin Routes**: Apply `(http.request.uri.path contains "/admin")` with **Challenge** action to ensure only authorized users can access administrative areas
+
+- **Geographic Restrictions**: Restrict traffic to specific countries using `(ip.geoip.country ne "US")` to block requests from unwanted regions
+
+- **SQL Injection Protection**: Implement `(http.request.uri.query matches "(?i)(union|select)")` with **Block** action to prevent SQL injection attacks
+
+- **Rate Limiting**: Set up rules to limit excessive requests from single IP addresses using `(cf.threat_score gt 10)` with appropriate action thresholds
+
+- **File Extension Blocking**: Block requests for sensitive files using `(http.request.uri.path contains ".env" or http.request.uri.path contains ".git")` with **Block** action
+
+These rules collectively strengthen your application's perimeter defense by filtering unwanted or malicious requests before they reach your servers, providing multiple layers of security protection.
 
 #### License
 
