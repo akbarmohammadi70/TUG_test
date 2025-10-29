@@ -210,7 +210,7 @@ Although Cloudflare is not directly configured in this environment, we can simul
 
 In Cloudflare (or simulation):
 
-A Record → example.com → <server-public-ip>
+A Record → example.com → < server-public-ip >
 
 CNAME Record → www → example.com
 
